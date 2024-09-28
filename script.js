@@ -4,7 +4,6 @@ var map;
 var marker;
 const helpbutton = document.getElementById("help");
 
-
 function showLocation(position){
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
@@ -24,6 +23,8 @@ function showLocation(position){
 
         helpbutton.addEventListener("click", getHelp);
 
+        safeButton.addEventListener("click", removeDanger)
+
     }
     else 
     {
@@ -36,7 +37,19 @@ function getHelp(){
     if (marker)
     {
         marker.bindPopup("Danger").openPopup();
+        safe();
     }
+    
+}
+
+function safe(){
+    const safeButton = document.getElementById("nullhelp");
+
+    safeButton.style.display = 'block';
+}
+
+function removeDanger(){
+    marker.closePopup();
 }
 
 function errorHandler(err) {
