@@ -2,6 +2,8 @@ var watchID;
 var geoLoc;
 var map;
 var marker;
+const helpbutton = document.getElementById("help");
+
 
 function showLocation(position){
     var latitude = position.coords.latitude;
@@ -19,11 +21,21 @@ function showLocation(position){
 
         
         marker = L.marker([latitude, longitude]).addTo(map);
+
+        helpbutton.addEventListener("click", getHelp);
+
     }
     else 
     {
         marker.setLatLng([latitude, longitude]);
         map.panTo([latitude, longitude], 13);
+    }
+}
+
+function getHelp(){
+    if (marker)
+    {
+        marker.bindPopup("Danger").openPopup();
     }
 }
 
